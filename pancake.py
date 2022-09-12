@@ -103,15 +103,11 @@ def cluster(evalues):
     for i in range(math.factorial(count-2),math.factorial(count), math.floor(math.sqrt(math.factorial(count-2)))):
         # print("i =",i)
         gain = 0
-        # _, _, inertia = k_means(matrix,i,algorithm="elkan")
         _, _, inertia = k_means(matrix,i)
-        # print("inertia =",inertia)
-        # print("compare i to",math.factorial(count-1))
-        if i>math.factorial(count-2):
-            # print("i >",math.factorial(count-1))
+        if inertia*prev_inertia>0:
             gain = prev_inertia/inertia
             # print("gain =",gain)
-            if 2*gain < prev_gain:
+            if 10*gain < prev_gain:
                 # print("ding!")
                 break
         prev_inertia = inertia
@@ -122,12 +118,11 @@ def cluster(evalues):
     for i in range(max(top_i-math.floor(math.sqrt(math.factorial(count-2)))-1,1),top_i+1):
         # print("i =",i)
         gain = 0
-        # centroid, label, inertia = k_means(matrix,i,algorithm="elkan")
         centroid, label, inertia = k_means(matrix,i)
-        if i>max(top_i-math.floor(math.sqrt(math.factorial(count-2)))-1,1):
+        if inertia*prev_inertia>0:
             gain = prev_inertia/inertia
             # print("gain =",gain)
-            if 2*gain < prev_gain:
+            if 10*gain < prev_gain:
                 # print("ding!")
                 break
         best_centroid = centroid

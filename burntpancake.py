@@ -109,7 +109,7 @@ def cluster(evalues):
     for i in range(pow(2,count)*math.factorial(count-2),pow(2,count+1)*math.factorial(count-2), math.floor(math.sqrt(pow(2,count-1)*math.factorial(count-2)))):
         gain = 0
         _, _, inertia = k_means(matrix,i,algorithm="elkan")
-        if i>pow(2,count-1)*math.factorial(count-2):
+        if inertia*prev_inertia>0:
             gain = prev_inertia/inertia
             # print(gain)
             if 2*gain < prev_gain:
@@ -123,7 +123,7 @@ def cluster(evalues):
     for i in range(top_i-math.floor(math.sqrt(pow(2,count-1)*math.factorial(count-2)))-1,top_i+1):
         gain = 0
         centroid, label, inertia = k_means(matrix,i,algorithm="elkan")
-        if i>pow(2,count-1)*math.factorial(count-2):
+        if inertia*prev_inertia>0:
             gain = prev_inertia/inertia
             # print(gain)
             if 2*gain < prev_gain:
