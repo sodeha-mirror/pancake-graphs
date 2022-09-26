@@ -166,7 +166,7 @@ def summary(evalues):
 matrix = sparse.dok_matrix((maxRank+1,maxRank+1), dtype=np.int8)
 
 for i in range(maxRank+1):
-    for j in range(count+1):
+    for j in range(2,count+1):
         matrix[i,pancake_flip(j,i)] = 1
 
 def to_csv():
@@ -219,7 +219,7 @@ while(True):
             if ind > maxRank:
                 print("Value must be a valid integer.")
             else:
-                for j in range(count+1):
+                for j in range(2,count+1):
                     print_stack(pancake_flip(j,ind))
     except ValueError:
         if(ind.lower() == 'q' or ind.lower() == 'quit'):
